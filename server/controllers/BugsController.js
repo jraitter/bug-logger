@@ -11,6 +11,7 @@ export default class BugsController {
       .get("/:id/Notes", this.getNoteByBugId)
       .post("", this.create)
       .put("/:id", this.edit)
+      .delete("/:id/notes/:id", this.deleteNote)
       .delete("/:id", this.delete);
   }
 
@@ -55,6 +56,16 @@ export default class BugsController {
   async edit(req, res, next) {
     try {
       let data = await BugService.update(req.params.id, req.body);
+      res.send(data);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteNote(req, res, next) {
+    try {
+      // await BugService.delete(req.params.id);
+      let data = await NoteService.deleteNoteById(req.params);
       res.send(data);
     } catch (error) {
       next(error);

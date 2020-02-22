@@ -8,15 +8,14 @@ class NoteService {
     // let data = await _repository.find({});
     // return data
     return await _repository.find({})
-      .populate("galaxyId", "title");
+      .populate("bug", "title");
   }
 
   async findById(id) {
     return await _repository.findById(id);
   }
-
-  async getByGalaxyId(id) {
-    return await _repository.find({ galaxyId: id });
+  async getByBugId(id) {
+    return await _repository.find({ bug: id });
   }
 
   // create, from create in controller is a post
@@ -28,6 +27,12 @@ class NoteService {
   async update(id, update) {
     //NOTE {new: true} insures I get the object back after the change
     return await _repository.findByIdAndUpdate(id, update, { new: true });
+  }
+  async deleteNoteById(params) {
+    let one = "a place to break point"
+    return await _repository.findByIdAndDelete(params.id)
+    let two = "a place to break point"
+
   }
 
   async delete(id) {

@@ -21,12 +21,23 @@ class BugService {
 
   // update, from edit in controller is a put
   async update(id, update) {
-    //NOTE {new: true} insures I get the object back after the change
+    let data = await _repository.findById(id)
+    if (data.closed) {
+      return ("This bug has already been closed")
+    }
     return await _repository.findByIdAndUpdate(id, update, { new: true });
   }
 
   async delete(id) {
-    await _repository.findByIdAndDelete(id);
+    let data = await _repository.findById(id)
+    if (data.closed) {
+      return ("This bug has been archived!")
+    }
+    let update = {
+      closed: true,
+      closedDate: new Date()
+    }
+    return await _repository.findByIdAndUpdate(id, update, { new: true });
   }
 }
 
