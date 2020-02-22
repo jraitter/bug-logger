@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const Bug = new Schema(
   {
-    closed: { type: Boolean, required: false },
+    closed: { type: Boolean, required: false, default: false },
     closedDate: { type: Date, required: false },
     title: { type: String, required: false },
     description: { type: String, required: false },
