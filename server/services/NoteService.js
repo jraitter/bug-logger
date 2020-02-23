@@ -29,10 +29,7 @@ class NoteService {
     return await _repository.findByIdAndUpdate(id, update, { new: true });
   }
   async deleteNoteById(params) {
-    let one = "a place to break point"
     return await _repository.findByIdAndDelete(params.id)
-    let two = "a place to break point"
-
   }
 
   async delete(id) {

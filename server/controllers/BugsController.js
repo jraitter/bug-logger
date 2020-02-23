@@ -73,8 +73,8 @@ export default class BugsController {
   }
   async delete(req, res, next) {
     try {
-      await BugService.delete(req.params.id);
-      res.send("This item has been archived");
+      let data = await BugService.delete(req.params.id);
+      res.send(data);
     } catch (error) {
       next(error);
     }
