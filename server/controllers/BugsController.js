@@ -24,6 +24,7 @@ export default class BugsController {
     }
   }
 
+  // getById is a get
   async getById(req, res, next) {
     try {
       let data = await BugService.findById(req.params.id);
@@ -62,6 +63,7 @@ export default class BugsController {
     }
   }
 
+  // deleteNote is a delete
   async deleteNote(req, res, next) {
     try {
       // await BugService.delete(req.params.id);
